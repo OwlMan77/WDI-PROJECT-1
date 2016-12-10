@@ -28,3 +28,8 @@ document.addEventListener('DOMContentLoaded', bomb.start);
 bomb.start = function start(){
 
 };
+
+
+bomb.makeKP = function makeKP(){
+  console.log('I\'m working');
+};
