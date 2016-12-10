@@ -18,18 +18,29 @@ console.log('linktest');
 
 var bomb = bomb || {};
 bomb.start;
+bomb.makeKP;
+bomb.base = 4;
 bomb.comSeq = [];
 bomb.pSeq = [];
 bomb.timer;
-document.addEventListener('DOMContentLoaded', bomb.start);
 
 
 
 bomb.start = function start(){
-
+  bomb.makeKP();
 };
 
 
+// Have the computer make a 4*4 square of 4 buttons( li elements) in a div
 bomb.makeKP = function makeKP(){
   console.log('I\'m working');
+  var body = $('body');
+  var keyDiv = '<div id="keyDiv"></div>';
+  body.append(keyDiv);
+  for (var i = 0; i < bomb.base*bomb.base ; i++) {
+    var newKey = '<li id ="'+ i +'"></li>';
+    keyDiv.append(newKey);
+  }
 };
+
+document.addEventListener('DOMContentLoaded', bomb.start);
