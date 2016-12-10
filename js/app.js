@@ -19,7 +19,7 @@ console.log('linktest');
 var bomb = bomb || {};
 bomb.start;
 bomb.makeKP;
-bomb.base = 4;
+bomb.base = 2;
 bomb.comSeq = [];
 bomb.pSeq = [];
 bomb.timer;
@@ -38,10 +38,10 @@ bomb.makeKP = function makeKP(){
   var keyDiv = '<div id="keyDiv"></div>';
   var keyGrid = '<ul></ul>';
   body.append(keyDiv);
-  keyDiv.append('ul');
+  $('#keyDiv').append(keyGrid);
   for (var i = 0; i < bomb.base*bomb.base ; i++) {
     var newKey = '<li id ="'+ i +'"></li>';
-    keyGrid.append(newKey);
+    $('ul').append(newKey);
   }
 };
 
