@@ -29,6 +29,7 @@ bomb.scoreBox;
 
 bomb.start = function start(){
   bomb.makeKP();
+  bomb.comSeqMk;
 };
 
 
@@ -50,9 +51,21 @@ bomb.makeKP = function makeKP(){
   $('li').css('height',keyWidth);
 };
 
-function comSeqMk(){
-  
+// Have the computer make a random sequence of buttons light up for the player to click. Make sure they can't click it while this happens.
+
+bomb.comSeqMk = function comSeqMk(){
+  var min = 0;
+  var max = Math.floor(bomb.base*bomb.base);
+  var step = Math.floor(Math.random() * (max - min + 1)) + min;
+  bomb.comSeq.push(step);
+  for(var j = 0; j < bomb.comSeq.length; j++){
+  //make buttons light up in order
+    var light = bomb.comSeq[j];
+    lightUp(light);
+  }
+};
+
+function lightUp(para){
+  $('#'+ para).css('background-color', 'blue');
 }
-
-
 document.addEventListener('DOMContentLoaded', bomb.start);
