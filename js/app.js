@@ -20,6 +20,7 @@ var bomb = bomb || {};
 bomb.start;
 bomb.makeKP;
 bomb.base = 2;
+bomb.width = 100;
 bomb.comSeq = [];
 bomb.pSeq = [];
 bomb.timer;
@@ -37,12 +38,15 @@ bomb.makeKP = function makeKP(){
   var body = $('body');
   var keyDiv = '<div id="keyDiv"></div>';
   var keyGrid = '<ul></ul>';
+  var keyWidth = bomb.width / bomb.base;
   body.append(keyDiv);
   $('#keyDiv').append(keyGrid);
   for (var i = 0; i < bomb.base*bomb.base ; i++) {
     var newKey = '<li id ="'+ i +'"></li>';
     $('ul').append(newKey);
   }
+  $('li').css('width',keyWidth);
+  $('li').css('height',keyWidth);
 };
 
 document.addEventListener('DOMContentLoaded', bomb.start);
