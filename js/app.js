@@ -36,10 +36,12 @@ bomb.makeKP = function makeKP(){
   console.log('I\'m working');
   var body = $('body');
   var keyDiv = '<div id="keyDiv"></div>';
+  var keyGrid = '<ul></ul>';
   body.append(keyDiv);
+  keyDiv.append('ul');
   for (var i = 0; i < bomb.base*bomb.base ; i++) {
     var newKey = '<li id ="'+ i +'"></li>';
-    keyDiv.append(newKey);
+    keyGrid.append(newKey);
   }
 };
 
