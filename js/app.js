@@ -24,7 +24,7 @@ bomb.width = 100;
 bomb.comSeq = [];
 bomb.pSeq = [];
 bomb.timer;
-
+bomb.scoreBox;
 
 
 bomb.start = function start(){
@@ -33,6 +33,7 @@ bomb.start = function start(){
 
 
 // Have the computer make a 4*4 square of 4 buttons( li elements) in a div
+
 bomb.makeKP = function makeKP(){
   console.log('I\'m working');
   var body = $('body');
@@ -48,5 +49,10 @@ bomb.makeKP = function makeKP(){
   $('li').css('width',keyWidth);
   $('li').css('height',keyWidth);
 };
+
+function comSeqMk(){
+  
+}
+
 
 document.addEventListener('DOMContentLoaded', bomb.start);
