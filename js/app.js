@@ -18,24 +18,24 @@ console.log('linktest');
 
 var bomb = bomb || {};
 bomb.start;
-bomb.makeKP;
+bomb.makeKeyPad;
 bomb.base = 2;
 bomb.width = 100;
-bomb.comSeq = [];
-bomb.pSeq = [];
+bomb.computerSequence = [];
+bomb.playerSequence = [];
 bomb.timer;
 bomb.scoreBox;
-
+bomb.computerSequenceMaker;
 
 bomb.start = function start(){
-  bomb.makeKP();
-  bomb.comSeqMk;
+  bomb.makeKeyPad();
+  bomb.computerSequenceMaker();
 };
 
 
 // Have the computer make a 4*4 square of 4 buttons( li elements) in a div
 
-bomb.makeKP = function makeKP(){
+bomb.makeKeyPad = function makeKeyPad(){
   console.log('I\'m working');
   var body = $('body');
   var keyDiv = '<div id="keyDiv"></div>';
@@ -53,19 +53,26 @@ bomb.makeKP = function makeKP(){
 
 // Have the computer make a random sequence of buttons light up for the player to click. Make sure they can't click it while this happens.
 
-bomb.comSeqMk = function comSeqMk(){
+bomb.computerSequenceMaker = function computerSequenceMaker(){
   var min = 0;
   var max = Math.floor(bomb.base*bomb.base);
-  var step = Math.floor(Math.random() * (max - min + 1)) + min;
-  bomb.comSeq.push(step);
-  for(var j = 0; j < bomb.comSeq.length; j++){
+  var step = Math.floor(Math.random() * (max - min)) + min;
+  bomb.computerSequence.push(step);
+  for(var j = 0; j < bomb.computerSequence.length; j++){
   //make buttons light up in order
-    var light = bomb.comSeq[j];
-    lightUp(light);
+    var lightSubject = bomb.computerSequence[j];
+
+    setTimeout(function(){
+      bomb.lightUp(lightSubject);
+    }, 500);
   }
 };
 
-function lightUp(para){
+bomb.lightUp = function lightUp(para){
   $('#'+ para).css('background-color', 'blue');
-}
+  //delay then remove the color
+  setTimeout(function(){
+    $('#'+ para).css('background-color', 'red');
+  }, 1000);
+};
 document.addEventListener('DOMContentLoaded', bomb.start);
