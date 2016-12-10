@@ -21,3 +21,9 @@ li {
   padding: 5px;
   margin-left: 5px;
 }
+
+
+.activated
+{
+  background-color: red;
+}

@@ -26,6 +26,7 @@ bomb.playerSequence = [];
 bomb.timer;
 bomb.scoreBox;
 bomb.computerSequenceMaker;
+bomb.counter;
 
 bomb.start = function start(){
   bomb.makeKeyPad();
@@ -43,7 +44,7 @@ bomb.makeKeyPad = function makeKeyPad(){
   var keyWidth = bomb.width / bomb.base;
   body.append(keyDiv);
   $('#keyDiv').append(keyGrid);
-  for (var i = 0; i < bomb.base*bomb.base ; i++) {
+  for (var i = 1; i < bomb.base*bomb.base + 1 ; i++) {
     var newKey = '<li id ="'+ i +'"></li>';
     $('ul').append(newKey);
   }
@@ -56,23 +57,42 @@ bomb.makeKeyPad = function makeKeyPad(){
 bomb.computerSequenceMaker = function computerSequenceMaker(){
   var min = 0;
   var max = Math.floor(bomb.base*bomb.base);
-  var step = Math.floor(Math.random() * (max - min)) + min;
-  bomb.computerSequence.push(step);
+  var randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
   for(var j = 0; j < bomb.computerSequence.length; j++){
-  //make buttons light up in order
-    var lightSubject = bomb.computerSequence[j];
-
-    setTimeout(function(){
-      bomb.lightUp(lightSubject);
-    }, 500);
+    bomb.computerSequence.push($('li')[randomNumber]);
   }
 };
 
 bomb.lightUp = function lightUp(para){
-  $('#'+ para).css('background-color', 'blue');
+  //the add the color
+  $(para).addClass('activated');
   //delay then remove the color
   setTimeout(function(){
-    $('#'+ para).css('background-color', 'red');
+    $(para).removeClass('activated');
   }, 1000);
 };
 document.addEventListener('DOMContentLoaded', bomb.start);
+
+// var count = 1;
+//
+// for (var i = 0; i < 1; i++) {
+//   $('li').random().push(sequence)
+// }
+//
+// var sequence = ['li', 'li', 'li'];
+//
+// for (var i = 0; i < sequence.length; i++) {
+//   sequence[i].addClass('light');
+//
+//   setTimeout(function() {
+//     sequence[i].removeClass('light');
+//   }, 1000);
+// }
+//
+// clicks = []
+//
+// ['li', 'li', 'li']
+//
+// if sequence === clicks
+// + 1 to counter
+//
