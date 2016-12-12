@@ -20,7 +20,9 @@ var bomb = bomb || {};
 bomb.base = 2;
 bomb.width = 100;
 bomb.computerSequence = [];
+bomb.computerSequenceId = [];
 bomb.playerSequence = [];
+bomb.playerSequenceId = [];
 bomb.sequenceComparison;
 bomb.counter = 1;
 bomb.beeps = 'audio';
@@ -57,9 +59,8 @@ bomb.computerSequenceMaker = function computerSequenceMaker(){
   var max = Math.floor(bomb.base*bomb.base);
   var randomNumber = Math.floor(Math.random() * (max - min)) + min;
   for(var j = 0; j < bomb.counter; j++){
-    bomb.computerSequence.push($('li')[randomNumber]);
-    bomb.computerSequence.value = randomNumber;
-    console.log(randomNumber);
+    bomb.computerSequence.push($('li')[randomNumber]); randomNumber;
+    bomb.computerSequenceId.push(randomNumber);
   }
   var sequence = bomb.computerSequence;
   bomb.lightOn(sequence);
@@ -71,7 +72,7 @@ bomb.lightOn = function() {
 
   var interval = setInterval(function() {
     $(bomb.computerSequence[i]).addClass('activated');
-
+    $(bomb.beeps[0]).trigger('play');
     setTimeout(function() {
       $(bomb.computerSequence[i]).removeClass('activated');
       i++;
@@ -103,29 +104,40 @@ bomb.inputSequence = function inputSequence(){
   for(let i = 0; i < (bomb.base*bomb.base); i++){
     $(('#key'+[i])).on('click', function(){
       bomb.playerSequence.push($('li')[i]);
+      bomb.playerSequenceId.push(i);
       $(bomb.beeps).trigger('play');
     });
   }
-  if(bomb.playerSequence.length === bomb.computerSequence.length){
-    bomb.sequenceComparison();
-  }
+
+  bomb.sequenceComparison();
 };
 
 // Only accept the answer when the sequence length entered = the sequence length shown
 
 bomb.sequenceComparison = function sequenceComparison(){
-  var sequence = [];
-  var user = [];
-function 
-  var computerSequence = $.makeArray(bomb.computerSequence);
-  var playerSequence = $.makeArray(bomb.playerSequence);
-  if(computerSequence === playerSequence){
-    console.log('works');
-  // call function to make it add another number to the sequence through bomb counter\
+  var Computer = $.makeArray(bomb.computerSequence);
+  var Player = $.makeArray(bomb.playerSequence);
+  var isSame = Player.length === Computer.length && Player.every(function(element, index) {
+    return element === Computer[index];
+  });
 
-  } else {
-    console.log('not working');
-  //   make it light up the same sequence
+  var clear = function clear(){
+    bomb.playerSequenceId = [];
+    bomb.playerSequence =[];
+  };
+
+  if(isSame === true){
+    console.log('works');
+  // call function to make it add another number to the sequence through bomb counter
+    clear();
+    bomb.counter++;
+
+  } else if( Computer.length === Player.length) {
+    console.log('incorrect');
+    clear();
+    bomb.lightOn();
+  } else{
+    console.log('not working bud');
   }
 
 };
