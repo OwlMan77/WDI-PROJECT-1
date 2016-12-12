@@ -24,20 +24,25 @@ bomb.timeIncrements = 15;
 
 bomb.start = function start(){
   bomb.makeKeyPad();
+  $('#startButton').on('click',bomb.game);
+};
+bomb.game = function game(){
   bomb.computerSequenceMaker();
   bomb.inputSequence();
   bomb.timer();
+  $('#startButton').hide();
 };
-
 
 bomb.timer = function timer(){
   $('#Timer').html(bomb.timerSeconds);
-  var count = setInterval(countdown, 1000);
+  var count = setInterval(countdown, 100);
   function countdown(){
     bomb.timerSeconds = bomb.timerSeconds -1;
     if (bomb.timerSeconds <= 0){
       clearInterval(count);
-      console.log('boom!');
+      $('#Timer').hide();
+      $('#scoreBox').html('Your score was: '+ bomb.score) .addClass('.gameOverScore');
+      $('ul').hide();
     }
     $('#Timer').html(bomb.timerSeconds);
   }
@@ -51,9 +56,11 @@ bomb.makeKeyPad = function makeKeyPad(){
   var body = $('body');
   var keyDiv = '<div id="keyDiv"></div>';
   var keyGrid = '<ul></ul>';
+  var startButton = '<div id="startButton">"Defuse"</div>';
   var keyWidth = bomb.width / bomb.base;
   body.append(keyDiv);
   $('#keyDiv').append(keyGrid);
+  body.append(startButton);
   for (var i = 0; i < bomb.base*bomb.base; i++) {
     var newKey = '<li id ="key'+ i +'"></li>';
     $('ul').append(newKey);
