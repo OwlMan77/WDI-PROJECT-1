@@ -12,7 +12,7 @@ bomb.computerSequenceId = [];
 bomb.playerSequence = [];
 bomb.playerSequenceId = [];
 bomb.sequenceComparison;
-bomb.counter = 1;
+bomb.sequenceIterations = 1;
 bomb.beeps = 'audio';
 // Have a score box with a intial value of 0
 bomb.score = 0;
@@ -29,12 +29,13 @@ bomb.game = function game(){
   bomb.inputSequence();
   bomb.timer();
   $('#startButton').hide();
+  $('li').show();
 };
 
 // Have a timer that counts down from a predetermined time (1min)
 bomb.timer = function timer(){
   $('#Timer').html(bomb.timerSeconds);
-  var count = setInterval(countdown, 100);
+  var count = setInterval(countdown, 1000);
   function countdown(){
     bomb.timerSeconds = bomb.timerSeconds -1;
     if (bomb.timerSeconds <= 0){
@@ -73,7 +74,7 @@ bomb.computerSequenceMaker = function computerSequenceMaker(){
   var min = 0;
   var max = Math.floor(bomb.base*bomb.base);
   var randomNumber = Math.floor(Math.random() * (max - min)) + min;
-  for(var j = 0; j < 1; j++){
+  for(var j = 0; j < bomb.sequenceIterations; j++){
     bomb.computerSequence.push($('li')[randomNumber]); randomNumber;
     bomb.computerSequenceId.push(randomNumber);
   }
@@ -122,19 +123,15 @@ bomb.sequenceComparison = function sequenceComparison(){
   var isSame = Player.length === Computer.length && Player.every(function(element, index) {
     return element === Computer[index];
   });
-  var clear = function clear(){
-    bomb.playerSequenceId = [];
-    bomb.playerSequence = [];
-  };
+
   if(isSame === true){
     console.log('works');
   // call function to make it add another number to the sequence through bomb counter
-    bomb.counter++;
 // IF player is correct then add +10 seconds to the time and 10 points to the score.
     bomb.score = bomb.score + bomb.scoreIncrements;
     bomb.setScore();
     bomb.timerSeconds = bomb.timerSeconds + bomb.timeIncrements;
-    clear();
+    bomb.clear();
     bomb.computerSequenceMaker();
   } else if( Computer.length === Player.length) {
     console.log('incorrect');
@@ -143,7 +140,7 @@ bomb.sequenceComparison = function sequenceComparison(){
     bomb.score = bomb.score - 10;
     bomb.setScore();
     bomb.timerMiliseconds = bomb.timerMiliseconds - 10;
-    clear();
+    bomb.clear();
   } else{
     console.log('not working bud');
   }
@@ -174,5 +171,9 @@ bomb.reset = function reset(){
   bomb.computerSequence = [];
   bomb.computerSequenceId = [];
   bomb.timerSeconds = 60;
+};
+bomb.clear = function clear(){
+  bomb.playerSequenceId = [];
+  bomb.playerSequence = [];
 };
 document.addEventListener('DOMContentLoaded', bomb.start);
