@@ -138,6 +138,8 @@ bomb.sequenceComparison = function sequenceComparison(){
   } else if( Computer.length === Player.length) {
     console.log('incorrect');
     clear();
+    bomb.score = bomb.score - 10;
+    bomb.timerMiliseconds = bomb.timerMiliseconds - 10;
     bomb.lightOn();
   } else{
     console.log('not working bud');
