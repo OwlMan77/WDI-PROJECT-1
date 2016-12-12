@@ -17,18 +17,13 @@ console.log('linktest');
 
 
 var bomb = bomb || {};
-bomb.start;
-bomb.makeKeyPad;
 bomb.base = 2;
 bomb.width = 100;
-bomb.computerSequenceMaker;
 bomb.computerSequence = [];
-bomb.inputSequence;
 bomb.playerSequence = [];
 bomb.sequenceComparison;
-bomb.timer;
-bomb.scoreBox;
 bomb.counter = 1;
+bomb.beeps = 'audio';
 
 bomb.start = function start(){
   bomb.makeKeyPad();
@@ -67,26 +62,31 @@ bomb.computerSequenceMaker = function computerSequenceMaker(){
     console.log(randomNumber);
   }
   var sequence = bomb.computerSequence;
-  bomb.lightUp(sequence);
+  bomb.lightOn(sequence);
 
 };
 
-bomb.lightUp = function lightUp(parm){
+//turn light on
+bomb.lightOn = function lightOn(parm){
   for(var i = 0; i < bomb.counter; i++ ){
     $((parm)[i]).addClass('activated');
-    $('audio').trigger('play');
-    setTimeout(function() {
-      $((parm)[i]).removeClass('activated').delay(1000);
-    }, 1000);
+    $(bomb.beeps[0]).trigger('play');
+    setTimeout(bomb.lightOff(i), 1000);
   }
 };
+//turn light off
+bomb.lightOff = function lightOff(parm,index){
+  $((parm)[index]).removeClass('activated');
+};
+
+
 
 //When play clicks a button a specifc sound (for each button) will play
 bomb.inputSequence = function inputSequence(){
   for(let i = 0; i < (bomb.base*bomb.base); i++){
     $(('#key'+[i])).on('click', function(){
       bomb.playerSequence.push($('li')[i]);
-      $('audio').trigger('play');
+      $(bomb.beeps).trigger('play');
     });
   }
 };
@@ -94,12 +94,14 @@ bomb.inputSequence = function inputSequence(){
 // Only accept the answer when the sequence length entered = the sequence length shown
 
 bomb.sequenceComparison = function sequenceComparison(){
-  if(bomb.computerSequence ===  bomb.playerSequence){
-    console.log('works');
-    bomb.counter =+ 1;
-  } else {
-    console.log('not working');
-  }
+  // if(bomb.computerSequence === bomb.playerSequence){
+  //   console.log('work');
+  //   call function to make it add another number to the sequence
+  // } else {
+  //   console.log('not working');
+  //   make it light up the same sequence
+  // }
+
 };
 
 
