@@ -20,6 +20,7 @@ bomb.beeps = 'audio';
 bomb.score = 0;
 bomb.scoreIncrements = 10;
 bomb.timerSeconds = 60;
+bomb.timeIncrements = 15;
 
 bomb.start = function start(){
   bomb.makeKeyPad();
@@ -30,15 +31,15 @@ bomb.start = function start(){
 
 
 bomb.timer = function timer(){
-  setInterval(countdown, 1000);
+  $('#Timer').html(bomb.timerSeconds);
+  var count = setInterval(countdown, 1000);
   function countdown(){
-    bomb.timerSeconds=bomb.timerSeconds-1;
-    $('#Timer').html(bomb.timerSeconds + 'seconds');
+    bomb.timerSeconds = bomb.timerSeconds -1;
     if (bomb.timerSeconds <= 0){
-      clearInterval(bomb.timerSeconds);
+      clearInterval(count);
       console.log('boom!');
-      return;
     }
+    $('#Timer').html(bomb.timerSeconds);
   }
 };
 
@@ -115,27 +116,26 @@ bomb.sequenceComparison = function sequenceComparison(){
   });
   var clear = function clear(){
     bomb.playerSequenceId = [];
-    bomb.playerSequence =[];
+    bomb.playerSequence = [];
   };
-
   if(isSame === true){
     console.log('works');
   // call function to make it add another number to the sequence through bomb counter
-    clear();
     bomb.counter++;
 // IF player is correct then add +10 seconds to the time and 10 points to the score.
-    bomb.score = bomb.score + 10;
+    bomb.score = bomb.score + bomb.scoreIncrements;
     bomb.setScore();
-    bomb.timerSeconds = bomb.timerSeconds + 10;
-
+    bomb.timerSeconds = bomb.timerSeconds + bomb.timeIncrements;
+    clear();
+    bomb.computerSequenceMaker();
   } else if( Computer.length === Player.length) {
     console.log('incorrect');
-    clear();
     bomb.lightOn();
   // IF player is wrong then add -10 seconds to time and -10 points from the score.
     bomb.score = bomb.score - 10;
     bomb.setScore();
     bomb.timerMiliseconds = bomb.timerMiliseconds - 10;
+    clear();
   } else{
     console.log('not working bud');
   }
