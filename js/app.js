@@ -106,6 +106,9 @@ bomb.inputSequence = function inputSequence(){
     $(('#key'+[i])).on('click', function(){
       bomb.playerSequence.push($('li')[i]);
       bomb.playerSequenceId.push(i);
+      if( bomb.playerSequence.length === bomb.computerSequence.length){
+        bomb.sequenceComparison();
+      }
 // When player clicks a button a specifc sound (for each button) will play.
       $(bomb.beeps).trigger('play');
     });
