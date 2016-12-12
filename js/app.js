@@ -25,6 +25,7 @@ bomb.computerSequenceMaker;
 bomb.computerSequence = [];
 bomb.inputSequence;
 bomb.playerSequence = [];
+bomb.sequenceComparison;
 bomb.timer;
 bomb.scoreBox;
 bomb.counter = 1;
@@ -32,7 +33,7 @@ bomb.counter = 1;
 bomb.start = function start(){
   bomb.makeKeyPad();
   bomb.computerSequenceMaker();
-  bomb.inputSequence()  ;
+  bomb.inputSequence();
 };
 
 
@@ -46,7 +47,7 @@ bomb.makeKeyPad = function makeKeyPad(){
   var keyWidth = bomb.width / bomb.base;
   body.append(keyDiv);
   $('#keyDiv').append(keyGrid);
-  for (var i = 1; i < bomb.base*bomb.base + 1 ; i++) {
+  for (var i = 0; i < bomb.base*bomb.base; i++) {
     var newKey = '<li id ="key'+ i +'"></li>';
     $('ul').append(newKey);
   }
@@ -62,6 +63,7 @@ bomb.computerSequenceMaker = function computerSequenceMaker(){
   var randomNumber = Math.floor(Math.random() * (max - min)) + min;
   for(var j = 0; j < bomb.counter; j++){
     bomb.computerSequence.push($('li')[randomNumber]);
+    bomb.computerSequence.value = randomNumber;
     console.log(randomNumber);
   }
   var sequence = bomb.computerSequence;
@@ -72,8 +74,9 @@ bomb.computerSequenceMaker = function computerSequenceMaker(){
 bomb.lightUp = function lightUp(parm){
   for(var i = 0; i < bomb.counter; i++ ){
     $((parm)[i]).addClass('activated');
+    $('audio').trigger('play');
     setTimeout(function() {
-      $((parm)[i]).removeClass('activated');
+      $((parm)[i]).removeClass('activated').delay(1000);
     }, 1000);
   }
 };
@@ -89,17 +92,15 @@ bomb.inputSequence = function inputSequence(){
 };
 
 // Only accept the answer when the sequence length entered = the sequence length shown
-bomb.SequenceComparison = function bomb.SequenceComparison(){
 
+bomb.sequenceComparison = function sequenceComparison(){
+  if(bomb.computerSequence ===  bomb.playerSequence){
+    console.log('works');
+    bomb.counter =+ 1;
+  } else {
+    console.log('not working');
+  }
 };
 
-document.addEventListener('DOMContentLoaded', bomb.start);
 
-//
-// clicks = []
-//
-// ['li', 'li', 'li']
-//
-// if sequence === clicks
-// + 1 to counter
-//
+document.addEventListener('DOMContentLoaded', bomb.start);
