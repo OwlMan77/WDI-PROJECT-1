@@ -47,7 +47,7 @@ bomb.makeKeyPad = function makeKeyPad(){
   body.append(keyDiv);
   $('#keyDiv').append(keyGrid);
   for (var i = 1; i < bomb.base*bomb.base + 1 ; i++) {
-    var newKey = '<li id ="'+ i +'"></li>';
+    var newKey = '<li id ="key'+ i +'"></li>';
     $('ul').append(newKey);
   }
   $('li').css('width',keyWidth);
@@ -72,21 +72,27 @@ bomb.computerSequenceMaker = function computerSequenceMaker(){
 bomb.lightUp = function lightUp(parm){
   for(var i = 0; i < bomb.counter; i++ ){
     $((parm)[i]).addClass('activated');
-
     setTimeout(function() {
       $((parm)[i]).removeClass('activated');
     }, 1000);
-  }(i);
+  }
 };
+
 //When play clicks a button a specifc sound (for each button) will play
 bomb.inputSequence = function inputSequence(){
-  for(var i = 0; i < bomb.base*bomb.base; i++){
-    console.log($('li')[i]);
-    $(('li')[i]).on('click', function(){
-      bomb.playerSequence.push($(('li')[i]));
+  for(let i = 0; i < (bomb.base*bomb.base); i++){
+    $(('#key'+[i])).on('click', function(){
+      bomb.playerSequence.push($('li')[i]);
+      $('audio').trigger('play');
     });
   }
 };
+
+// Only accept the answer when the sequence length entered = the sequence length shown
+bomb.SequenceComparison = function bomb.SequenceComparison(){
+
+};
+
 document.addEventListener('DOMContentLoaded', bomb.start);
 
 //
