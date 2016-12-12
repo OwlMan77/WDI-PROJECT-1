@@ -21,16 +21,18 @@ bomb.start;
 bomb.makeKeyPad;
 bomb.base = 2;
 bomb.width = 100;
+bomb.computerSequenceMaker;
 bomb.computerSequence = [];
+bomb.inputSequence;
 bomb.playerSequence = [];
 bomb.timer;
 bomb.scoreBox;
-bomb.computerSequenceMaker;
-bomb.counter;
+bomb.counter = 1;
 
 bomb.start = function start(){
   bomb.makeKeyPad();
   bomb.computerSequenceMaker();
+  bomb.inputSequence()  ;
 };
 
 
@@ -57,37 +59,36 @@ bomb.makeKeyPad = function makeKeyPad(){
 bomb.computerSequenceMaker = function computerSequenceMaker(){
   var min = 0;
   var max = Math.floor(bomb.base*bomb.base);
-  var randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-  for(var j = 0; j < bomb.computerSequence.length; j++){
+  var randomNumber = Math.floor(Math.random() * (max - min)) + min;
+  for(var j = 0; j < bomb.counter; j++){
     bomb.computerSequence.push($('li')[randomNumber]);
+    console.log(randomNumber);
   }
+  var sequence = bomb.computerSequence;
+  bomb.lightUp(sequence);
+
 };
 
-bomb.lightUp = function lightUp(para){
-  //the add the color
-  $(para).addClass('activated');
-  //delay then remove the color
-  setTimeout(function(){
-    $(para).removeClass('activated');
-  }, 1000);
+bomb.lightUp = function lightUp(parm){
+  for(var i = 0; i < bomb.counter; i++ ){
+    $((parm)[i]).addClass('activated');
+
+    setTimeout(function() {
+      $((parm)[i]).removeClass('activated');
+    }, 1000);
+  }(i);
+};
+//When play clicks a button a specifc sound (for each button) will play
+bomb.inputSequence = function inputSequence(){
+  for(var i = 0; i < bomb.base*bomb.base; i++){
+    console.log($('li')[i]);
+    $(('li')[i]).on('click', function(){
+      bomb.playerSequence.push($(('li')[i]));
+    });
+  }
 };
 document.addEventListener('DOMContentLoaded', bomb.start);
 
-// var count = 1;
-//
-// for (var i = 0; i < 1; i++) {
-//   $('li').random().push(sequence)
-// }
-//
-// var sequence = ['li', 'li', 'li'];
-//
-// for (var i = 0; i < sequence.length; i++) {
-//   sequence[i].addClass('light');
-//
-//   setTimeout(function() {
-//     sequence[i].removeClass('light');
-//   }, 1000);
-// }
 //
 // clicks = []
 //
