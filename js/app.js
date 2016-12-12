@@ -26,7 +26,9 @@ bomb.playerSequenceId = [];
 bomb.sequenceComparison;
 bomb.counter = 1;
 bomb.beeps = 'audio';
-
+bomb.score = 0;
+bomb.scoreIncrements = 10;
+bomb.timerMiliseconds = 6000;
 bomb.start = function start(){
   bomb.makeKeyPad();
   bomb.computerSequenceMaker();
@@ -69,7 +71,6 @@ bomb.computerSequenceMaker = function computerSequenceMaker(){
 
 bomb.lightOn = function() {
   var i = 0;
-
   var interval = setInterval(function() {
     $(bomb.computerSequence[i]).addClass('activated');
     $(bomb.beeps[0]).trigger('play');
@@ -131,6 +132,8 @@ bomb.sequenceComparison = function sequenceComparison(){
   // call function to make it add another number to the sequence through bomb counter
     clear();
     bomb.counter++;
+    bomb.score = bomb.score + 10;
+    bomb.timerMiliseconds = bomb.timerMiliseconds + 10;
 
   } else if( Computer.length === Player.length) {
     console.log('incorrect');
