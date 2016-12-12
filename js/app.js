@@ -66,18 +66,35 @@ bomb.computerSequenceMaker = function computerSequenceMaker(){
 
 };
 
+bomb.lightOn = function() {
+  var i = 0;
+
+  var interval = setInterval(function() {
+    $(bomb.computerSequence[i]).addClass('activated');
+
+    setTimeout(function() {
+      $(bomb.computerSequence[i]).removeClass('activated');
+      i++;
+    }, 600);
+
+    if (i >= bomb.computerSequence.length) {
+      clearInterval(interval);
+    }
+  }, 800);
+};
+
 //turn light on
-bomb.lightOn = function lightOn(parm){
-  for(var i = 0; i < bomb.counter; i++ ){
-    $((parm)[i]).addClass('activated');
-    $(bomb.beeps[0]).trigger('play');
-    setTimeout(bomb.lightOff(i), 1000);
-  }
-};
-//turn light off
-bomb.lightOff = function lightOff(parm,index){
-  $((parm)[index]).removeClass('activated');
-};
+// bomb.lightOn = function lightOn(parm){
+//   for(var i = 0; i < bomb.counter; i++ ){
+//     $((parm)[i]).addClass('activated');
+//     $(bomb.beeps[0]).trigger('play');
+//     setTimeout(bomb.lightOff(parm, i), 1000);
+//   }
+// };
+// //turn light off
+// bomb.lightOff = function lightOff(parm, index){
+//   $((parm)[index]).removeClass('activated');
+// };
 
 
 
@@ -89,18 +106,27 @@ bomb.inputSequence = function inputSequence(){
       $(bomb.beeps).trigger('play');
     });
   }
+  if(bomb.playerSequence.length === bomb.computerSequence.length){
+    bomb.sequenceComparison();
+  }
 };
 
 // Only accept the answer when the sequence length entered = the sequence length shown
 
 bomb.sequenceComparison = function sequenceComparison(){
-  // if(bomb.computerSequence === bomb.playerSequence){
-  //   console.log('work');
-  //   call function to make it add another number to the sequence
-  // } else {
-  //   console.log('not working');
+  var sequence = [];
+  var user = [];
+function 
+  var computerSequence = $.makeArray(bomb.computerSequence);
+  var playerSequence = $.makeArray(bomb.playerSequence);
+  if(computerSequence === playerSequence){
+    console.log('works');
+  // call function to make it add another number to the sequence through bomb counter\
+
+  } else {
+    console.log('not working');
   //   make it light up the same sequence
-  // }
+  }
 
 };
 
