@@ -29,6 +29,7 @@ bomb.beeps = 'audio';
 bomb.score = 0;
 bomb.scoreIncrements = 10;
 bomb.timerMiliseconds = 6000;
+
 bomb.start = function start(){
   bomb.makeKeyPad();
   bomb.computerSequenceMaker();
@@ -39,7 +40,6 @@ bomb.start = function start(){
 // Have the computer make a 4*4 square of 4 buttons( li elements) in a div
 
 bomb.makeKeyPad = function makeKeyPad(){
-  console.log('I\'m working');
   var body = $('body');
   var keyDiv = '<div id="keyDiv"></div>';
   var keyGrid = '<ul></ul>';
@@ -60,7 +60,7 @@ bomb.computerSequenceMaker = function computerSequenceMaker(){
   var min = 0;
   var max = Math.floor(bomb.base*bomb.base);
   var randomNumber = Math.floor(Math.random() * (max - min)) + min;
-  for(var j = 0; j < bomb.counter; j++){
+  for(var j = 0; j < 1; j++){
     bomb.computerSequence.push($('li')[randomNumber]); randomNumber;
     bomb.computerSequenceId.push(randomNumber);
   }
@@ -73,7 +73,7 @@ bomb.lightOn = function() {
   var i = 0;
   var interval = setInterval(function() {
     $(bomb.computerSequence[i]).addClass('activated');
-    $(bomb.beeps[0]).trigger('play');
+
     setTimeout(function() {
       $(bomb.computerSequence[i]).removeClass('activated');
       i++;
@@ -85,21 +85,6 @@ bomb.lightOn = function() {
   }, 800);
 };
 
-//turn light on
-// bomb.lightOn = function lightOn(parm){
-//   for(var i = 0; i < bomb.counter; i++ ){
-//     $((parm)[i]).addClass('activated');
-//     $(bomb.beeps[0]).trigger('play');
-//     setTimeout(bomb.lightOff(parm, i), 1000);
-//   }
-// };
-// //turn light off
-// bomb.lightOff = function lightOff(parm, index){
-//   $((parm)[index]).removeClass('activated');
-// };
-
-
-
 //When play clicks a button a specifc sound (for each button) will play
 bomb.inputSequence = function inputSequence(){
   for(let i = 0; i < (bomb.base*bomb.base); i++){
@@ -109,8 +94,6 @@ bomb.inputSequence = function inputSequence(){
       $(bomb.beeps).trigger('play');
     });
   }
-
-  bomb.sequenceComparison();
 };
 
 // Only accept the answer when the sequence length entered = the sequence length shown
@@ -126,26 +109,29 @@ bomb.sequenceComparison = function sequenceComparison(){
     bomb.playerSequenceId = [];
     bomb.playerSequence =[];
   };
-
   if(isSame === true){
     console.log('works');
   // call function to make it add another number to the sequence through bomb counter
     clear();
     bomb.counter++;
     bomb.score = bomb.score + 10;
+    bomb.setScore();
     bomb.timerMiliseconds = bomb.timerMiliseconds + 10;
 
   } else if( Computer.length === Player.length) {
     console.log('incorrect');
     clear();
-    bomb.score = bomb.score - 10;
-    bomb.timerMiliseconds = bomb.timerMiliseconds - 10;
     bomb.lightOn();
+    bomb.score = bomb.score - 10;
+    bomb.setScore();
+    bomb.timerMiliseconds = bomb.timerMiliseconds - 10;
   } else{
     console.log('not working bud');
   }
 
 };
 
-
+bomb.setScore = function setScore(){
+  $('#scoreBox').html('Score: ' + bomb.score + 'pts');
+};
 document.addEventListener('DOMContentLoaded', bomb.start);
