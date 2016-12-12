@@ -1,8 +1,6 @@
 console.log('linktest');
 
-// Have a timer that counts down from a predetermined time (1min)
 // When time runs out, clear the screen and make it go bang!
-// When end screen is shown display the score and game over.
 // IF player is incorrect then have the computer repeat the previous sequence.
 // Repeat until the user can no longer remember and runs out of time.
 
@@ -33,6 +31,7 @@ bomb.game = function game(){
   $('#startButton').hide();
 };
 
+// Have a timer that counts down from a predetermined time (1min)
 bomb.timer = function timer(){
   $('#Timer').html(bomb.timerSeconds);
   var count = setInterval(countdown, 100);
@@ -40,9 +39,8 @@ bomb.timer = function timer(){
     bomb.timerSeconds = bomb.timerSeconds -1;
     if (bomb.timerSeconds <= 0){
       clearInterval(count);
-      $('#Timer').hide();
-      $('#scoreBox').html('Your score was: '+ bomb.score) .addClass('.gameOverScore');
-      $('ul').hide();
+      // When end screen is shown display the score and game over.
+      bomb.gameOver();
     }
     $('#Timer').html(bomb.timerSeconds);
   }
@@ -110,6 +108,9 @@ bomb.inputSequence = function inputSequence(){
 // When player clicks a button a specifc sound (for each button) will play.
       $(bomb.beeps).trigger('play');
     });
+    if(bomb.playerSequence.length === bomb.computerSequence.length){
+      bomb.sequenceComparison();
+    }
   }
 };
 
@@ -149,7 +150,29 @@ bomb.sequenceComparison = function sequenceComparison(){
 
 };
 
+bomb.gameOver = function gameOver(){
+  $('#Timer').hide();
+  $('#scoreBox').html('Your score was: '+ bomb.score + 'pts') .addClass('.gameOverScore');
+  $('ul').hide();
+  $('li').hide();
+  $('body').append('<div id = "resetButton">Retry</div>');
+  $('#resetButton').on('click', bomb.reset);
+};
+
 bomb.setScore = function setScore(){
   $('#scoreBox').html('Score: ' + bomb.score + 'pts');
+};
+
+bomb.reset = function reset(){
+  bomb.setScore();
+  $('#Timer').show();
+  $('ul').show();
+  $('li').show();
+  $('#startButton').show();
+  $('#resetButton').remove();
+  bomb.clear();
+  bomb.computerSequence = [];
+  bomb.computerSequenceId = [];
+  bomb.timerSeconds = 60;
 };
 document.addEventListener('DOMContentLoaded', bomb.start);
