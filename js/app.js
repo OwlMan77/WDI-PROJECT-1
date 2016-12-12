@@ -26,7 +26,6 @@ bomb.start = function start(){
 };
 bomb.game = function game(){
   bomb.computerSequenceMaker();
-  bomb.inputSequence();
   bomb.timer();
   $('#startButton').hide();
   $('li').show();
@@ -71,6 +70,7 @@ bomb.makeKeyPad = function makeKeyPad(){
 // Have the computer make a random sequence of buttons light up for the player to click. Make sure they can't click it while this happens.
 
 bomb.computerSequenceMaker = function computerSequenceMaker(){
+  $('li').off();
   var min = 0;
   var max = Math.floor(bomb.base*bomb.base);
   var randomNumber = Math.floor(Math.random() * (max - min)) + min;
@@ -80,7 +80,7 @@ bomb.computerSequenceMaker = function computerSequenceMaker(){
   }
   var sequence = bomb.computerSequence;
   bomb.lightOn(sequence);
-
+  bomb.inputSequence();
 };
 
 // Have the computer make a random sequence of buttons light up for the player to click. Make sure they can't click it while this happens.
@@ -140,9 +140,9 @@ bomb.sequenceComparison = function sequenceComparison(){
     console.log('incorrect');
     bomb.lightOn();
   // IF player is wrong then add -10 seconds to time and -10 points from the score.
-    bomb.score = bomb.score - 10;
+    bomb.score = bomb.score - bomb.scoreIncrements;
     bomb.setScore();
-    bomb.timerMiliseconds = bomb.timerMiliseconds - 10;
+    bomb.timerSeconds = bomb.timerSeconds - (bomb.timeIncrements * 3);
     bomb.clear();
   } else{
     console.log('not working bud');
@@ -174,6 +174,7 @@ bomb.reset = function reset(){
   bomb.computerSequence = [];
   bomb.computerSequenceId = [];
   bomb.timerSeconds = 60;
+  $('#Timer').html(bomb.timerSeconds);
 };
 bomb.clear = function clear(){
   bomb.playerSequenceId = [];
