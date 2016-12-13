@@ -174,10 +174,13 @@ bomb.reset = function reset(){
   bomb.computerSequence = [];
   bomb.computerSequenceId = [];
   bomb.timerSeconds = 60;
+  bomb.score = 0;
   $('#Timer').html(bomb.timerSeconds);
+  $('#scoreBox').html('Score: ' + bomb.score + 'pts');
 };
 bomb.clear = function clear(){
   bomb.playerSequenceId = [];
   bomb.playerSequence = [];
+
 };
 document.addEventListener('DOMContentLoaded', bomb.start);
