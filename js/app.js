@@ -83,12 +83,12 @@ bomb.computerSequenceMaker = function computerSequenceMaker(){
   var max = Math.floor(bomb.base*bomb.base);
   var randomNumber = Math.floor(Math.random() * (max - min)) + min;
   for(var j = 0; j < bomb.sequenceIterations; j++){
-    bomb.computerSequence.push($('li')[randomNumber]); randomNumber;
-    bomb.computerSequenceId.push(randomNumber);
+    this.computerSequence.push($('li')[randomNumber]); randomNumber;
+    this.computerSequenceId.push(randomNumber);
   }
-  var sequence = bomb.computerSequence;
-  bomb.lightOn(sequence);
-  bomb.inputSequence();
+  var sequence = this.computerSequence;
+  this.lightOn(sequence);
+  this.inputSequence();
 };
 
 // Have the computer make a random sequence of buttons light up for the player to click. Make sure they can't click it while this happens.
@@ -164,7 +164,8 @@ bomb.gameOver = function gameOver(){
   $('ul').hide();
   $('li').hide();
   $('body').css('background-color','black');
-  $('body').css('background-image','url("")');
+  $('body').css('background','url("https://i.imgur.com/mA2KdS8.gif"');
+  $('body').css('background-size', 'cover');
   $('body').append('<div id = "resetButton">Retry</div>');
   $('#resetButton').on('click', bomb.reset);
 };
