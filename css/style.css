@@ -1,7 +1,8 @@
 body{
-  background-size: auto;
+  background-size: cover;
   min-height: 100%;
-  background: url('') no-repeat 0 0;
+  min-width: 100%;
+  background: url('https://lh3.googleusercontent.com/dSCLacAePvbVxaoGQnQZQAFve2fhnoljHvhpGRSSUN59a-BZfQJTcF_PM418gpPYscNhJtaLHtIcqxZ-74osQVTXba7pZ3QOccBXiar0M_WzQk1FUy5_MG1YYWrbq17HFFn-qbyxHTWYcysZZcEAZ_d2e9VOzMGxdKe_RKITYl4fPAnufQ5VoiEkIcLdvJq-rM6kj7j8O8ZtTC3Rw6LvqIG_mWCMH5yz6Cv9QLmzeeQHhr4iGCbWreu-huBFXL6XiPvgPGhwfoPNYdnGNZ8NvnSSBI13EU9KCHiIyVuv8z0jQX3ZceFq85772qq4UE4RuUHAm2maLt6arAHKzArhPBp5BdwppQkxKQntv09c1WUh8wd1Bmjkzncyf_1S5cp6CsQhMPn_QzG0lBdX1CaIHU6z2nQ-AdjtQNd8EanWIV8QLijwkj6yeCFpJA5F1RLKtZyoACsFSbzW4U2a8-S6sGsbfBqd2LtkoQIkSps5slf-MCBYUuJD5SJUs8wVcLttPXnSa7IUY2ZBBz1FZtQGFZ9SdMvB0z8UZAsFVNsbbUWBcRWYpVnFQZZ8X8zWfxMXMkhOzSsz=w1440-h733') no-repeat 0 0;
 }
 
 #keyDiv {
@@ -10,6 +11,9 @@ body{
   position: relative;
   background-size: cover;
   background-color: #207D46;
+  background-image: url('https://lh3.googleusercontent.com/yT05qw23BN4iKib4tGf03IAT6U1BqoQgHLSPfYQxtbWu8PjqjnPO2PXCymm675C_ZHUaO2eeapQ3-08Vped0Cia7kJf_yc20fv04aa0Ju8XYPGeU2I69QRe8KE7s1IJXsB0GHG2Ta8CANMcSOPRXY3QyWt2WpggwvOiTnPqoc9HURfYcqiW9hyk0BFPi7Dc_3DskzZRexx3xz36qQV5tEEX2tJ8FJzqVVTS9i867Rm4748zFjMERSFCddyqZh-Tro745RbljS-auUxlcHcszrDK6UXnO6kAhlsxvc0_KXn8qJLo2UIdNuVgv51Ujxl9nKkdhNNg_IPIeRW5uXl1mkDr-kYP16xsSkMdAXHAMu4fjpbB9hZK4Qfjr24IVUjolWiQHrZ8MrigqCTdIxP4VYx5K8k9b_GjSLuBpTz_0FhZN7CXhEgLsBJgy8jO-_xp6w5FukoRlkMQv_SsoMQ_Dom2GK3bTUz6I78r1kCR5MksqQu7Pc1wik1Nkk4UFpzvrA9PC7YJc7xDaS4_0AKYYYb6GTnUgEQpYqbTHzuhg09ot0w1GJAW5ACmqPAgZ5yGliugEz3L8=w809-h720');
+  left: 23%;
+  top: 200px;
 }
 
 ul {
@@ -28,7 +32,14 @@ li {
   padding: 5px;
   margin-right: 5px;
 }
-
+li p{
+  position: relative;
+  left: 30%;
+  top: 20%;
+  font-size: 50px;
+  margin: auto 0;
+  color: #28E558;
+}
 
 .activated
 {
@@ -56,13 +67,16 @@ li {
 #scoreBox {
   position: relative;
   font-family: 'Orbitron', sans-serif;
+  color: #28E558;
+  left: 10%;
 }
 
 #Timer {
   position: relative;
   font-family: 'Orbitron', sans-serif;
   bottom: 50%;
-  left: 10%;
+  left: 5%;
   z-index: 20;
   color: #28E558;
+  font-size: 40px;
 }

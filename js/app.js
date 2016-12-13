@@ -164,6 +164,7 @@ bomb.gameOver = function gameOver(){
   $('ul').hide();
   $('li').hide();
   $('body').css('background-color','black');
+  $('body').css('background-image','url("")');
   $('body').append('<div id = "resetButton">Retry</div>');
   $('#resetButton').on('click', bomb.reset);
 };
@@ -185,6 +186,7 @@ bomb.reset = function reset(){
   bomb.timerSeconds = 60;
   bomb.score = 0;
   $('#Timer').html(bomb.timerSeconds);
+  $('#Timer').css('color', '');
   $('#scoreBox').html('Score: ' + bomb.score + 'pts');
 };
 bomb.clear = function clear(){
