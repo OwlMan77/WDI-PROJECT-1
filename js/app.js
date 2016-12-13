@@ -160,12 +160,12 @@ bomb.sequenceComparison = function sequenceComparison(){
 
 bomb.gameOver = function gameOver(){
   $('#Timer').hide();
+  $('h1').hide();
   $('#scoreBox').html('Your score was: '+ bomb.score + 'pts') .addClass('.gameOverScore');
   $('ul').hide();
   $('li').hide();
-  $('body').css('background-color','black');
-  $('body').css('background','url("https://media.giphy.com/media/jkcNl5LoETuXS/giphy.gif"');
-  $('body').css('background-size', 'cover');
+  $('body').toggleClass('end');
+  $('#keyDiv').toggleClass('end');
   $('body').append('<div id = "resetButton">Retry</div>');
   $('#resetButton').on('click', bomb.reset);
 };
@@ -177,6 +177,7 @@ bomb.setScore = function setScore(){
 bomb.reset = function reset(){
   bomb.setScore();
   $('#Timer').show();
+  $('h1').show();
   $('ul').show();
   $('li').show();
   $('#startButton').show();
@@ -189,8 +190,9 @@ bomb.reset = function reset(){
   $('#Timer').html(bomb.timerSeconds);
   $('#Timer').css('color', '#FAFAFA');
   $('#scoreBox').html('Score: ' + bomb.score + 'pts');
-  $('body').css('background-image', 'none') .css('background-image', 'url("https://lh3.googleusercontent.com/dSCLacAePvbVxaoGQnQZQAFve2fhnoljHvhpGRSSUN59a-BZfQJTcF_PM418gpPYscNhJtaLHtIcqxZ-74osQVTXba7pZ3QOccBXiar0M_WzQk1FUy5_MG1YYWrbq17HFFn-qbyxHTWYcysZZcEAZ_d2e9VOzMGxdKe_RKITYl4fPAnufQ5VoiEkIcLdvJq-rM6kj7j8O8ZtTC3Rw6LvqIG_mWCMH5yz6Cv9QLmzeeQHhr4iGCbWreu-huBFXL6XiPvgPGhwfoPNYdnGNZ8NvnSSBI13EU9KCHiIyVuv8z0jQX3ZceFq85772qq4UE4RuUHAm2maLt6arAHKzArhPBp5BdwppQkxKQntv09c1WUh8wd1Bmjkzncyf_1S5cp6CsQhMPn_QzG0lBdX1CaIHU6z2nQ-AdjtQNd8EanWIV8QLijwkj6yeCFpJA5F1RLKtZyoACsFSbzW4U2a8-S6sGsbfBqd2LtkoQIkSps5slf-MCBYUuJD5SJUs8wVcLttPXnSa7IUY2ZBBz1FZtQGFZ9SdMvB0z8UZAsFVNsbbUWBcRWYpVnFQZZ8X8zWfxMXMkhOzSsz=w1440-h733")') .css('background-repeat','no-repeat') .css('background-size','auto');
+  $('body').toggleClass('end');
   $('#Timer').css('color','#28E558');
+  $('#divKey').toggleClass('end');
 };
 bomb.clear = function clear(){
   bomb.playerSequenceId = [];
