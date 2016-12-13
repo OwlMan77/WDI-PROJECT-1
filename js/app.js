@@ -6,7 +6,7 @@ console.log('linktest');
 
 var bomb = bomb || {};
 bomb.base = 2;
-bomb.width = 100;
+bomb.width = 200;
 bomb.computerSequence = [];
 bomb.computerSequenceId = [];
 bomb.playerSequence = [];
@@ -155,6 +155,7 @@ bomb.gameOver = function gameOver(){
   $('#scoreBox').html('Your score was: '+ bomb.score + 'pts') .addClass('.gameOverScore');
   $('ul').hide();
   $('li').hide();
+  $('body').css('background-color','black');
   $('body').append('<div id = "resetButton">Retry</div>');
   $('#resetButton').on('click', bomb.reset);
 };
