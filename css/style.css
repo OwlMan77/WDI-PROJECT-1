@@ -78,14 +78,15 @@ li p{
 #startButton {
   position: relative;
   border: 2px solid red;
-  border-radius: 10%;
+  border-radius: 5%;
   font-family: 'Orbitron', sans-serif;
   color: red;
   text-align: center;
-  width: 75px;
+  width: 120px;
   padding: 5px;
   left: 60%;
-  bottom: 10%;
+  bottom: 20%;
+  font-size: 25px;
 }
 
 #startButton:hover {
@@ -117,7 +118,7 @@ li p{
   position: relative;
   font-family: 'Orbitron', sans-serif;
   color: #28E558;
-  left: 10%;
+  left: 2%;
   bottom: 10%;
   font-size: 25px
 }
