@@ -7,6 +7,7 @@ console.log('linktest');
 var bomb = bomb || {};
 bomb.base = 2;
 bomb.width = 200;
+bomb.symbols = ['➀', '➁', '➂', '➃'];
 bomb.computerSequence = [];
 bomb.computerSequenceId = [];
 bomb.playerSequence = [];
@@ -37,6 +38,9 @@ bomb.timer = function timer(){
   var count = setInterval(countdown, 1000);
   function countdown(){
     bomb.timerSeconds = bomb.timerSeconds -1;
+    if(bomb.timerSeconds <= 4){
+      $('#Timer').css('color', 'red');
+    }
     if (bomb.timerSeconds <= 0){
       clearInterval(count);
       // When end screen is shown display the score and game over.
@@ -55,13 +59,17 @@ bomb.makeKeyPad = function makeKeyPad(){
   var keyDiv = '<div id="keyDiv"></div>';
   var keyGrid = '<ul></ul>';
   var startButton = '<div id="startButton">"Defuse"</div>';
+
   var keyWidth = bomb.width / bomb.base;
   body.append(keyDiv);
   $('#keyDiv').append(keyGrid);
-  body.append(startButton);
+  $('#keyDiv').append('<div id ="Timer">'+bomb.timerSeconds+'</div>');
+  $('#keyDiv').append('<div id ="scoreBox">Score: 0pts</div>');
+  $('#keyDiv').append(startButton);
   for (var i = 0; i < bomb.base*bomb.base; i++) {
     var newKey = '<li id ="key'+ i +'"></li>';
     $('ul').append(newKey);
+    $('#key' + i).html('<p>'+ bomb.symbols[i] +'</p>');
   }
   $('li').css('width',keyWidth);
   $('li').css('height',keyWidth);
