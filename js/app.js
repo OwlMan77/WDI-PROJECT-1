@@ -14,7 +14,7 @@ bomb.playerSequence = [];
 bomb.playerSequenceId = [];
 bomb.sequenceComparison;
 bomb.sequenceIterations = 1;
-bomb.beeps = 'audio';
+bomb.beeps = ['beep1','beep2','beep3','beep4'];
 // Have a score box with a intial value of 0
 bomb.score = 0;
 bomb.scoreIncrements = 10;
@@ -23,7 +23,6 @@ bomb.timeIncrements = 15;
 
 bomb.start = function start(){
   bomb.makeKeyPad();
-  $('#startButton').on('click',bomb.game);
 };
 bomb.game = function game(){
   bomb.computerSequenceMaker();
@@ -73,6 +72,7 @@ bomb.makeKeyPad = function makeKeyPad(){
   }
   $('li').css('width',keyWidth);
   $('li').css('height',keyWidth);
+  $('#startButton').on('click',bomb.game);
 };
 
 // Have the computer make a random sequence of buttons light up for the player to click. Make sure they can't click it while this happens.
@@ -119,6 +119,7 @@ bomb.inputSequence = function inputSequence(){
       }
 // When player clicks a button a specifc sound (for each button) will play.
       $(bomb.beeps).trigger('play');
+      console.log($(bomb.beeps).eq(5));
     });
     if(bomb.playerSequence.length === bomb.computerSequence.length){
       bomb.sequenceComparison();
@@ -157,7 +158,7 @@ bomb.sequenceComparison = function sequenceComparison(){
   }
 
 };
-
+//changes the screen to the Game over screen
 bomb.gameOver = function gameOver(){
   $('#Timer').hide();
   $('h1').hide();
@@ -171,10 +172,12 @@ bomb.gameOver = function gameOver(){
   $('#resetButton').on('click', bomb.reset);
 };
 
+//Displays the score
 bomb.setScore = function setScore(){
   $('#scoreBox').html('Score: ' + bomb.score + 'pts');
 };
 
+//resets to the start screen
 bomb.reset = function reset(){
   bomb.setScore();
   $('#Timer').show();
