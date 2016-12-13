@@ -70,7 +70,9 @@ li p{
 }
 
 #keyDiv.end{
-  background:url(' https://i.imgur.com/LKBP6t6.png'), url('https://lh3.googleusercontent.com/yT05qw23BN4iKib4tGf03IAT6U1BqoQgHLSPfYQxtbWu8PjqjnPO2PXCymm675C_ZHUaO2eeapQ3-08Vped0Cia7kJf_yc20fv04aa0Ju8XYPGeU2I69QRe8KE7s1IJXsB0GHG2Ta8CANMcSOPRXY3QyWt2WpggwvOiTnPqoc9HURfYcqiW9hyk0BFPi7Dc_3DskzZRexx3xz36qQV5tEEX2tJ8FJzqVVTS9i867Rm4748zFjMERSFCddyqZh-Tro745RbljS-auUxlcHcszrDK6UXnO6kAhlsxvc0_KXn8qJLo2UIdNuVgv51Ujxl9nKkdhNNg_IPIeRW5uXl1mkDr-kYP16xsSkMdAXHAMu4fjpbB9hZK4Qfjr24IVUjolWiQHrZ8MrigqCTdIxP4VYx5K8k9b_GjSLuBpTz_0FhZN7CXhEgLsBJgy8jO-_xp6w5FukoRlkMQv_SsoMQ_Dom2GK3bTUz6I78r1kCR5MksqQu7Pc1wik1Nkk4UFpzvrA9PC7YJc7xDaS4_0AKYYYb6GTnUgEQpYqbTHzuhg09ot0w1GJAW5ACmqPAgZ5yGliugEz3L8=w809-h720');
+  background:url('https://i.imgur.com/LKBP6t6.png');
+  background-size: cover;
+  background-color: #207D46;
 }
 
 #startButton {
@@ -91,11 +93,39 @@ li p{
   color: #207D46;
 }
 
+#resetButton {
+  position: relative;
+  border: 2px solid red;
+  border-radius: 10%;
+  font-family: 'Orbitron', sans-serif;
+  color: red;
+  text-align: center;
+  width: 200px;
+  padding: 20px;
+  font-size: 20px;
+  left: 15%;
+  top: 40%;
+}
+
+#resetButton:hover {
+  background-color: red;
+  color: #207D46;
+}
+
+
 #scoreBox {
   position: relative;
   font-family: 'Orbitron', sans-serif;
   color: #28E558;
   left: 10%;
+  bottom: 10%;
+  font-size: 25px
+}
+
+#scoreBox.end {
+  font-size: 40px;
+  left: 10%;
+  top: 10%;
 }
 
 #Timer {

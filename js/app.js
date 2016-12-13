@@ -166,7 +166,8 @@ bomb.gameOver = function gameOver(){
   $('li').hide();
   $('body').toggleClass('end');
   $('#keyDiv').toggleClass('end');
-  $('body').append('<div id = "resetButton">Retry</div>');
+  $('#scoreBox').toggleClass('end');
+  $('#keyDiv').append('<div id = "resetButton">Retry</div>');
   $('#resetButton').on('click', bomb.reset);
 };
 
@@ -193,6 +194,7 @@ bomb.reset = function reset(){
   $('body').toggleClass('end');
   $('#Timer').css('color','#28E558');
   $('#keyDiv').toggleClass('end');
+  $('#scoreBox').toggleClass('end');
 };
 bomb.clear = function clear(){
   bomb.playerSequenceId = [];
