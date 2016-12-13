@@ -75,7 +75,6 @@ li p{
 
 #startButton {
   position: relative;
-  background: url(media/images/redButton.png) auto 0 0;
   border: 2px solid red;
   border-radius: 10%;
   font-family: 'Orbitron', sans-serif;

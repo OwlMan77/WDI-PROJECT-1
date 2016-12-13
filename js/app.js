@@ -192,7 +192,7 @@ bomb.reset = function reset(){
   $('#scoreBox').html('Score: ' + bomb.score + 'pts');
   $('body').toggleClass('end');
   $('#Timer').css('color','#28E558');
-  $('#divKey').toggleClass('end');
+  $('#keyDiv').toggleClass('end');
 };
 bomb.clear = function clear(){
   bomb.playerSequenceId = [];
