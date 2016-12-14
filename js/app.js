@@ -130,7 +130,6 @@ bomb.sequenceComparison = function sequenceComparison(){
   });
 
   if(isSame === true){
-    console.log('works');
   // call function to make it add another number to the sequence through bomb counter
 // IF player is correct then add +10 seconds to the time and 10 points to the score.
     bomb.score        = bomb.score + bomb.scoreIncrements;

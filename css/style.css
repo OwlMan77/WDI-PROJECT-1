@@ -12,7 +12,7 @@ h1{
 }
 body{
   background-size: auto;
-  min-height: 100%;
+  min-height: 827px;
   min-width: 60%;
   background: url('https://goo.gl/zL6y99') no-repeat 0 0;
   background-color: #FAFAFA;
@@ -22,7 +22,7 @@ body{
 body.end{
   background-color: black;
   background: url("https://media.giphy.com/media/jkcNl5LoETuXS/giphy.gif");
-  background-size: cover;;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
