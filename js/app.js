@@ -1,6 +1,3 @@
-console.log('linktest');
-
-// When time runs out, clear the screen and make it go bang!
 // IF player is incorrect then have the computer repeat the previous sequence.
 // Repeat until the user can no longer remember and runs out of time.
 
@@ -14,7 +11,7 @@ bomb.playerSequence = [];
 bomb.playerSequenceId = [];
 bomb.sequenceComparison;
 bomb.sequenceIterations = 1;
-bomb.beeps = ['beep1','beep2','beep3','beep4'];
+bomb.beeps = 'audio';
 // Have a score box with a intial value of 0
 bomb.score = 0;
 bomb.scoreIncrements = 10;
@@ -54,19 +51,19 @@ bomb.timer = function timer(){
 // Have the computer make a 4*4 square of 4 buttons( li elements) in a div
 
 bomb.makeKeyPad = function makeKeyPad(){
-  var body = $('body');
-  var keyDiv = '<div id="keyDiv"></div>';
-  var keyGrid = '<ul></ul>';
+  var body        = $('body');
+  var keyDiv      = '<div id="keyDiv"></div>';
+  var keyGrid     = '<ul></ul>';
   var startButton = '<div id="startButton">"Defuse"</div>';
 
-  var keyWidth = bomb.width / bomb.base;
+  var keyWidth    = bomb.width / bomb.base;
   body.append(keyDiv);
   $('#keyDiv').append(keyGrid);
   $('#keyDiv').append('<div id ="Timer">'+bomb.timerSeconds+'</div>');
   $('#keyDiv').append('<div id ="scoreBox">Score: 0pts</div>');
   $('#keyDiv').append(startButton);
   for (var i = 0; i < bomb.base*bomb.base; i++) {
-    var newKey = '<li id ="key'+ i +'"></li>';
+    var newKey    = '<li id ="key'+ i +'"></li>';
     $('ul').append(newKey);
     $('#key' + i).html('<p>'+ bomb.symbols[i] +'</p>');
   }
@@ -81,18 +78,18 @@ bomb.computerSequenceMaker = function computerSequenceMaker(){
   $('li').off();
   var min = 0;
   var max = Math.floor(bomb.base*bomb.base);
-  var randomNumber = Math.floor(Math.random() * (max - min)) + min;
+  var randomNumber         = Math.floor(Math.random() * (max - min)) + min;
   for(var j = 0; j < bomb.sequenceIterations; j++){
     this.computerSequence.push($('li')[randomNumber]); randomNumber;
     this.computerSequenceId.push(randomNumber);
   }
-  var sequence = this.computerSequence;
+  var sequence             = this.computerSequence;
   this.lightOn(sequence);
   this.inputSequence();
 };
 
 // Have the computer make a random sequence of buttons light up for the player to click. Make sure they can't click it while this happens.
-bomb.lightOn = function() {
+bomb.lightOn   = function() {
   var i = 0;
   var interval = setInterval(function() {
     $(bomb.computerSequence[i]).addClass('activated');
@@ -117,9 +114,8 @@ bomb.inputSequence = function inputSequence(){
       if( bomb.playerSequence.length === bomb.computerSequence.length){
         bomb.sequenceComparison();
       }
-// When player clicks a button a specifc sound (for each button) will play.
-      $(bomb.beeps).trigger('play');
-      console.log($(bomb.beeps).eq(5));
+// When player clicks a button a sound will play.
+      $('#beep'+ i).trigger('play');
     });
     if(bomb.playerSequence.length === bomb.computerSequence.length){
       bomb.sequenceComparison();
@@ -131,8 +127,8 @@ bomb.inputSequence = function inputSequence(){
 
 bomb.sequenceComparison = function sequenceComparison(){
   var Computer = $.makeArray(bomb.computerSequence);
-  var Player = $.makeArray(bomb.playerSequence);
-  var isSame = Player.length === Computer.length && Player.every(function(element, index) {
+  var Player   = $.makeArray(bomb.playerSequence);
+  var isSame   = Player.length === Computer.length && Player.every(function(element, index) {
     return element === Computer[index];
   });
 
@@ -140,7 +136,7 @@ bomb.sequenceComparison = function sequenceComparison(){
     console.log('works');
   // call function to make it add another number to the sequence through bomb counter
 // IF player is correct then add +10 seconds to the time and 10 points to the score.
-    bomb.score = bomb.score + bomb.scoreIncrements;
+    bomb.score        = bomb.score + bomb.scoreIncrements;
     bomb.setScore();
     bomb.timerSeconds = bomb.timerSeconds + bomb.timeIncrements;
     bomb.clear();
@@ -149,7 +145,7 @@ bomb.sequenceComparison = function sequenceComparison(){
     console.log('incorrect');
     bomb.lightOn();
   // IF player is wrong then add -10 seconds to time and -10 points from the score.
-    bomb.score = bomb.score - bomb.scoreIncrements;
+    bomb.score        = bomb.score - bomb.scoreIncrements;
     bomb.setScore();
     bomb.timerSeconds = bomb.timerSeconds - (bomb.timeIncrements * 3);
     bomb.clear();
@@ -168,6 +164,8 @@ bomb.gameOver = function gameOver(){
   $('body').toggleClass('end');
   $('#keyDiv').toggleClass('end');
   $('#scoreBox').toggleClass('end');
+  //when end game is reach an explosion is played;
+  $('#boom').trigger('play');
   $('#keyDiv').append('<div id = "resetButton">Retry</div>');
   $('#resetButton').on('click', bomb.reset);
 };
@@ -177,7 +175,7 @@ bomb.setScore = function setScore(){
   $('#scoreBox').html('Score: ' + bomb.score + 'pts');
 };
 
-//resets to the start screen
+//resets all revelvant values and goes to the start screen
 bomb.reset = function reset(){
   bomb.setScore();
   $('#Timer').show();
@@ -187,10 +185,12 @@ bomb.reset = function reset(){
   $('#startButton').show();
   $('#resetButton').remove();
   bomb.clear();
-  bomb.computerSequence = [];
+  bomb.computerSequence   = [];
   bomb.computerSequenceId = [];
   bomb.timerSeconds = 60;
   bomb.score = 0;
+  //added this to remove a bug that would occur on restart
+  $('li').removeClass('activated');
   $('#Timer').html(bomb.timerSeconds);
   $('#Timer').css('color', '#FAFAFA');
   $('#scoreBox').html('Score: ' + bomb.score + 'pts');
@@ -200,7 +200,7 @@ bomb.reset = function reset(){
   $('#scoreBox').toggleClass('end');
 };
 bomb.clear = function clear(){
-  bomb.playerSequenceId = [];
-  bomb.playerSequence = [];
+  bomb.playerSequenceId  = [];
+  bomb.playerSequence    = [];
 };
 document.addEventListener('DOMContentLoaded', bomb.start);
