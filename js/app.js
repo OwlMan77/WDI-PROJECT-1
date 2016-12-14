@@ -56,7 +56,7 @@ bomb.timer = function timer(){
   $('#Timer').html(bomb.timerSeconds);
   var count = setInterval(countdown, 1000);
   function countdown(){
-    bomb.timerSeconds = bomb.timerSeconds -1;
+    bomb.timerSeconds = bomb.timerSeconds - 1;
     if(bomb.timerSeconds <= 10){
       $('#Timer').css('color', 'red');
     }
