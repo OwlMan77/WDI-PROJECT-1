@@ -1,10 +1,11 @@
 h1{
   position: relative;
   z-index: 2000;
-  left: 25%;
+  left: 26%;
   top: 100px;
   font-family: 'Bentham', sans-serif;
-  background-image: url('https://lh3.googleusercontent.com/Buk9uBVldBO3pZkkU2Z8Hgr4zHzi7P5zscbqcFhXXQy68B5Wsxxx_3JIoCycLbZ7q8GYayYG978QCB26pf8lN4Y8-p2gz6hQAULS-2RkGQTQ3Etk9GWqbz6CjZy77NCu52IPZUuCPFiZf0TZXaR1F4X-dS4Y2yy51SJOxfrmAXch8-Uzrokuo0TNQG--OuJOS-hVq2P9H61MzCCf7cRlG3zbXrPnfA-dbNuiRhZMRijalojDwvopUzGinBjgYwmkMoKfyUBS1J6KcvXXDWsJSVuFdKqnLZC6vcW_9RhsuKffownSDiuVXmhs0TzElC-XSYj9rh57JsWuJwqzkjeR8fTDcHfxUUsTN0MqpuXpU7bAutPqAXWbIv0YwJjZG6IgC7WSCpOraJtphg5ISquVvgHYucBknY29Y7-FGZ435j-ROEYtJgWnOOCLsMozprW8IAWA6ORq2VCigl0AQSlPnkPL6nEd4MsFddD3mGi3oslRr3MXqPjyIem3vSCG3WEsvFFfzcpIsUVnb3yBEcrG7zz-64j6ZCsNHQIMZzL4plFBynUFAcjTZ5myDIJJLADGk9mzaGSv=w1440-h692');
+  font-size: 37px;
+  background-image: url('https://goo.gl/Jkf2aJ');
   background-repeat: no-repeat;
   background-size: 275px;
   padding: 9px;
@@ -13,7 +14,7 @@ body{
   background-size: auto;
   min-height: 100%;
   min-width: 60%;
-  background: url('https://lh3.googleusercontent.com/dSCLacAePvbVxaoGQnQZQAFve2fhnoljHvhpGRSSUN59a-BZfQJTcF_PM418gpPYscNhJtaLHtIcqxZ-74osQVTXba7pZ3QOccBXiar0M_WzQk1FUy5_MG1YYWrbq17HFFn-qbyxHTWYcysZZcEAZ_d2e9VOzMGxdKe_RKITYl4fPAnufQ5VoiEkIcLdvJq-rM6kj7j8O8ZtTC3Rw6LvqIG_mWCMH5yz6Cv9QLmzeeQHhr4iGCbWreu-huBFXL6XiPvgPGhwfoPNYdnGNZ8NvnSSBI13EU9KCHiIyVuv8z0jQX3ZceFq85772qq4UE4RuUHAm2maLt6arAHKzArhPBp5BdwppQkxKQntv09c1WUh8wd1Bmjkzncyf_1S5cp6CsQhMPn_QzG0lBdX1CaIHU6z2nQ-AdjtQNd8EanWIV8QLijwkj6yeCFpJA5F1RLKtZyoACsFSbzW4U2a8-S6sGsbfBqd2LtkoQIkSps5slf-MCBYUuJD5SJUs8wVcLttPXnSa7IUY2ZBBz1FZtQGFZ9SdMvB0z8UZAsFVNsbbUWBcRWYpVnFQZZ8X8zWfxMXMkhOzSsz=w1440-h733') no-repeat 0 0;
+  background: url('https://goo.gl/zL6y99') no-repeat 0 0;
   background-color: #FAFAFA;
   margin: 0 auto;
 }
@@ -21,7 +22,8 @@ body{
 body.end{
   background-color: black;
   background: url("https://media.giphy.com/media/jkcNl5LoETuXS/giphy.gif");
-  background-size: cover;
+  background-size: cover;;
+  background-repeat: no-repeat;
 }
 
 ul {
@@ -34,7 +36,7 @@ ul {
 }
 
 li {
-  background: url('https://lh3.googleusercontent.com/NlqtQxMxHTwmJCc40dCDs58jjCpuELjUgsOjS9yZqgDBb8OclYUpG7a3CBqWI8wRTjLj4qiXx_gFB-iBEoWOjJadtcgFeQkuDJvJy927Jtn4FUB3_s-DBfeiKkq6NVjEArmp4kcZQJpSFx8y9Z-G08upUhKMBys5rnUNU5tGhOQZ7IXDd4K3Udk4pwbjrzzS3xmbJxJZiGKDZUkLZrbmtZ2Xpd6Y2gDDeLtLkFR4LHGqU7uwpLk_eVX3q2ikYSIuzfAtiI8tVhBUBRNskjWl4vS84QAnsUPfCQrXcnBySTrlXkYTWUvcjGpi28cpVM2bHddStyf6uZD52HS4ybNUpBSFBDb9psA1vSuDZECrw2U2DSHKqX94EaTG2c-5jBnVCOlgqWMFU4PZyvVgXsUvdwc4h9aNJi-sAyDXddB1VQXinM9MFvUNuXIxWF5oTUcJwLmy2bkjK6GWiwzCGca5E5LoKb6uX_u6TvjgeFgN_8c-BEHRcp_Iiktya87e2UjmO6MzYRO_m_CkQcPqL5E9vLNN80rs-BsYJljN_wJSZSsH9wWz7yZdObrKfK3MR6v9bj5cWZzt=w1440-h733') no-repeat 0 0;
+  background: url('https://goo.gl/42jm3j') no-repeat 0 0;
   background-size: contain;
   display: inline-block;
   padding: 5px;
@@ -64,7 +66,7 @@ li p{
   position: relative;
   background-size: cover;
   background-color: #207D46;
-  background-image: url('https://lh3.googleusercontent.com/yT05qw23BN4iKib4tGf03IAT6U1BqoQgHLSPfYQxtbWu8PjqjnPO2PXCymm675C_ZHUaO2eeapQ3-08Vped0Cia7kJf_yc20fv04aa0Ju8XYPGeU2I69QRe8KE7s1IJXsB0GHG2Ta8CANMcSOPRXY3QyWt2WpggwvOiTnPqoc9HURfYcqiW9hyk0BFPi7Dc_3DskzZRexx3xz36qQV5tEEX2tJ8FJzqVVTS9i867Rm4748zFjMERSFCddyqZh-Tro745RbljS-auUxlcHcszrDK6UXnO6kAhlsxvc0_KXn8qJLo2UIdNuVgv51Ujxl9nKkdhNNg_IPIeRW5uXl1mkDr-kYP16xsSkMdAXHAMu4fjpbB9hZK4Qfjr24IVUjolWiQHrZ8MrigqCTdIxP4VYx5K8k9b_GjSLuBpTz_0FhZN7CXhEgLsBJgy8jO-_xp6w5FukoRlkMQv_SsoMQ_Dom2GK3bTUz6I78r1kCR5MksqQu7Pc1wik1Nkk4UFpzvrA9PC7YJc7xDaS4_0AKYYYb6GTnUgEQpYqbTHzuhg09ot0w1GJAW5ACmqPAgZ5yGliugEz3L8=w809-h720');
+  background-image: url('https://goo.gl/ChMFxe');
   left: 23%;
   top: 100px;
   border-radius: 5%;
@@ -73,8 +75,10 @@ li p{
 #keyDiv.end{
   background:url('https://i.imgur.com/LKBP6t6.png');
   background-size: cover;
+  background-repeat: no-repeat;
   background-color: #207D46;
   top: 170px;
+  left: 40%;
 }
 
 #startButton {
@@ -99,7 +103,7 @@ li p{
 #resetButton {
   position: relative;
   border: 2px solid red;
-  border-radius: 10%;
+  border-radius: 5%;
   font-family: 'Orbitron', sans-serif;
   color: red;
   text-align: center;
@@ -155,4 +159,28 @@ li p{
 
 #key3.activated {
   background-color: rgba(154,205,50, 0.7);
+}
+
+
+.audioButtons {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  left: 50%;
+  display: none;
+}
+
+#audioPlayButton{
+  background-image: url('https://goo.gl/M7wmuH');
+}
+#audioPauseButton{
+  background-image: url('https://goo.gl/YPKPyk');
+}
+#audioMuteButton{
+  background-image: url('https://goo.gl/SEK7w4');
+}
+#audioMuteButton.muted {
+  background-image: url('https://goo.gl/KKTzpk');
 }
