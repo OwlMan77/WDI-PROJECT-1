@@ -1,48 +1,42 @@
 var bomb = bomb || {};
 bomb.base = 2;
 bomb.width = 200;
-bomb.symbols = ['➀', '➁', '➂', '➃'];
-bomb.computerSequence = [];
+bomb.symbols            = ['➀', '➁', '➂', '➃'];
+bomb.computerSequence   = [];
 bomb.computerSequenceId = [];
-bomb.playerSequence = [];
-bomb.playerSequenceId = [];
+bomb.playerSequence     = [];
+bomb.playerSequenceId   = [];
 bomb.sequenceComparison;
 bomb.sequenceIterations = 1;
-bomb.beeps = 'audio';
+bomb.beeps = 'beep';
 // Have a score box with a intial value of 0
-bomb.score = 0;
-bomb.scoreIncrements = 10;
-bomb.timerSeconds = 60;
-bomb.timeIncrements = 10;
-
+bomb.score              = 0;
+bomb.scoreIncrements    = 10;
+bomb.timerSeconds       = 60;
+bomb.timeIncrements     = 10;
+bomb.keyDownInputs      = [];
 bomb.start = function start(){
   bomb.makeKeyPad();
-};
-
-//sets up the game
-bomb.game = function game(){
-  bomb.computerSequenceMaker();
-  bomb.timer();
-  $('#startButton').hide();
-  $('li').show();
 };
 
 // Have the computer make game screen
 
 bomb.makeKeyPad = function makeKeyPad(){
-  var body        = $('body');
-  var keyDiv      = '<div id="keyDiv"></div>';
-  var keyGrid     = '<ul></ul>';
-  var startButton = '<div id="startButton">"Defuse"</div>';
+  const body            = $('body');
+  const keyDivContainer = '<div id ="keyDivContainer"></div>';
+  const keyDiv          = '<div id="keyDiv"></div>';
+  const keyGrid         = '<ul></ul>';
+  const startButton     = '<div id="startButton">"Defuse"</div>';
 
-  var keyWidth    = bomb.width / bomb.base;
-  body.append(keyDiv);
+  const keyWidth        = bomb.width / bomb.base;
+  body.append(keyDivContainer);
+  $('#keyDivContainer').append(keyDiv);
   $('#keyDiv').append(keyGrid);
   $('#keyDiv').append('<div id ="Timer">'+bomb.timerSeconds+'</div>');
   $('#keyDiv').append('<div id ="scoreBox">Score: 0pts</div>');
   $('#keyDiv').append(startButton);
-  for (var i = 0; i < bomb.base*bomb.base; i++) {
-    var newKey    = '<li id ="key'+ i +'"></li>';
+  for (let i            = 0; i < bomb.base*bomb.base; i++) {
+    const newKey        = '<li id ="key'+ i +'"></li>';
     $('ul').append(newKey);
     $('#key' + i).html('<p>'+ bomb.symbols[i] +'</p>');
   }
@@ -51,10 +45,18 @@ bomb.makeKeyPad = function makeKeyPad(){
   $('#startButton').on('click',bomb.game);
 };
 
+//sets up the game
+bomb.game                 = function game(){
+  bomb.computerSequenceMaker();
+  bomb.timer();
+  $('#startButton').hide();
+  $('li').show();
+};
+
 // Have a timer that counts down from a predetermined time (1min)
-bomb.timer = function timer(){
+bomb.timer                  = function timer(){
   $('#Timer').html(bomb.timerSeconds);
-  var count = setInterval(countdown, 1000);
+  const count = setInterval(countdown, 1000);
   function countdown(){
     bomb.timerSeconds = bomb.timerSeconds - 1;
     if(bomb.timerSeconds <= 10){
@@ -71,24 +73,24 @@ bomb.timer = function timer(){
 
 // Have the computer make a random sequence of buttons light up for the player to click. Make sure they can't click it while this happens.
 
-bomb.computerSequenceMaker = function computerSequenceMaker(){
+bomb.computerSequenceMaker    = function computerSequenceMaker(){
   $('li').off();
-  var min = 0;
-  var max = Math.floor(bomb.base*bomb.base);
-  var randomNumber         = Math.floor(Math.random() * (max - min)) + min;
-  for(var j = 0; j < bomb.sequenceIterations; j++){
+  const min = 0;
+  const max = Math.floor(bomb.base*bomb.base);
+  const randomNumber           = Math.floor(Math.random() * (max - min)) + min;
+  for(let j = 0; j < bomb.sequenceIterations; j++){
     this.computerSequence.push($('li')[randomNumber]); randomNumber;
     this.computerSequenceId.push(randomNumber);
   }
-  var sequence             = this.computerSequence;
+  const sequence             = this.computerSequence;
   this.lightOn(sequence);
   this.inputSequence();
 };
 
 // Have the computer make a random sequence of buttons light up for the player to click. Make sure they can't click it while this happens.
-bomb.lightOn   = function() {
-  var i = 0;
-  var interval = setInterval(function() {
+bomb.lightOn                  = function() {
+  var i                       = 0;
+  var interval                = setInterval(function() {
     $(bomb.computerSequence[i]).addClass('activated');
 
     setTimeout(function() {
@@ -103,7 +105,7 @@ bomb.lightOn   = function() {
 };
 
 //When play clicks a button a specifc sound (for each button) will play
-bomb.inputSequence = function inputSequence(){
+bomb.inputSequence               = function inputSequence(){
   for(let i = 0; i < (bomb.base*bomb.base); i++){
     $(('#key'+[i])).on('click', function(){
       bomb.playerSequence.push($('li')[i]);
@@ -122,28 +124,32 @@ bomb.inputSequence = function inputSequence(){
 
 // Only accept the answer when the sequence length entered = the sequence length shown
 
-bomb.sequenceComparison = function sequenceComparison(){
-  var Computer = $.makeArray(bomb.computerSequence);
-  var Player   = $.makeArray(bomb.playerSequence);
-  var isSame   = Player.length === Computer.length && Player.every(function(element, index) {
+bomb.sequenceComparison           =
+function sequenceComparison(){
+  const Computer                  = $.makeArray(bomb.computerSequence);
+  const Player                    = $.makeArray(bomb.playerSequence);
+  const isSame                    =
+  Player.length === Computer.length && Player.every(function(element, index) {
     return element === Computer[index];
   });
 
   if(isSame === true){
   // call function to make it add another number to the sequence through bomb counter
 // IF player is correct then add +10 seconds to the time and 10 points to the score.
-    bomb.score        = bomb.score + bomb.scoreIncrements;
+    bomb.score                      =
+    bomb.score + bomb.scoreIncrements;
     bomb.setScore();
-    bomb.timerSeconds = bomb.timerSeconds + bomb.timeIncrements;
+    bomb.timerSeconds               = bomb.timerSeconds + bomb.timeIncrements;
     bomb.clear();
     bomb.computerSequenceMaker();
   } else if( Computer.length === Player.length) {
   // IF player is incorrect then have the computer repeat the previous sequence.
     bomb.lightOn();
   // IF player is wrong then add -10 seconds to time and -10 points from the score.
-    bomb.score        = bomb.score - bomb.scoreIncrements;
+    bomb.score                      =
+    bomb.score - bomb.scoreIncrements;
     bomb.setScore();
-    bomb.timerSeconds = bomb.timerSeconds - bomb.timeIncrements;
+    bomb.timerSeconds               = bomb.timerSeconds - bomb.timeIncrements;
     bomb.clear();
   } else{
     bomb.lightOn();
