@@ -118,9 +118,9 @@ bomb.inputSequence = function inputSequence() {
       // When player clicks a button a sound will play.
       $('#beep' + i).trigger('play');
     });
-    if (bomb.playerSequence.length === bomb.computerSequence.length) {
-      bomb.sequenceComparison();
-    }
+    // if(bomb.playerSequence.length === bomb.computerSequence.length){
+    //   bomb.sequenceComparison();
+    // }
   };
 
   for (var i = 0; i < bomb.base * bomb.base; i++) {
@@ -166,6 +166,7 @@ bomb.gameOver = function gameOver() {
   $('ul').hide();
   $('li').hide();
   $('body').toggleClass('end');
+  $('#keyDivContainer').toggleClass('end');
   $('#keyDiv').toggleClass('end');
   $('#scoreBox').toggleClass('end');
   //when end game is reach an explosion is played;
@@ -198,8 +199,9 @@ bomb.reset = function reset() {
   $('#Timer').html(bomb.timerSeconds);
   $('#Timer').css('color', '#FAFAFA');
   $('#scoreBox').html('Score: ' + bomb.score + 'pts');
-  $('body').toggleClass('end');
+  $('#keyDivContainer').toggleClass('end');
   $('#Timer').css('color', '#28E558');
+  $('body').toggleClass('end');
   $('#keyDiv').toggleClass('end');
   $('#scoreBox').toggleClass('end');
 };

@@ -35,7 +35,7 @@ bomb.makeKeyPad = function makeKeyPad(){
   $('#keyDiv').append('<div id ="Timer">'+bomb.timerSeconds+'</div>');
   $('#keyDiv').append('<div id ="scoreBox">Score: 0pts</div>');
   $('#keyDiv').append(startButton);
-  for (let i            = 0; i < bomb.base*bomb.base; i++) {
+  for (let i = 0; i < bomb.base*bomb.base; i++) {
     const newKey        = '<li id ="key'+ i +'"></li>';
     $('ul').append(newKey);
     $('#key' + i).html('<p>'+ bomb.symbols[i] +'</p>');
@@ -107,15 +107,20 @@ bomb.lightOn                  = function() {
 //When play clicks a button a specifc sound (for each button) will play
 bomb.inputSequence               = function inputSequence(){
   for(let i = 0; i < (bomb.base*bomb.base); i++){
-    $(('#key'+[i])).on('click', function(){
+    $(('#key'+[i])).on('click',() =>{
       bomb.playerSequence.push($('li')[i]);
       bomb.playerSequenceId.push(i);
-      if( bomb.playerSequence.length === bomb.computerSequence.length){
-        bomb.sequenceComparison();
-      }
 // When player clicks a button a sound will play.
       $('#beep'+ i).trigger('play');
     });
+
+    $(('#key'+[i])).on('keyDownInputs',() =>{
+      bomb.playerSequence.push($('li')[i]);
+      bomb.playerSequenceId.push(i);
+// When player clicks a button a sound will play.
+      $('#beep'+ i).trigger('play');
+    });
+
     if(bomb.playerSequence.length === bomb.computerSequence.length){
       bomb.sequenceComparison();
     }
@@ -165,6 +170,7 @@ bomb.gameOver = function gameOver(){
   $('ul').hide();
   $('li').hide();
   $('body').toggleClass('end');
+  $('#keyDivContainer').toggleClass('end');
   $('#keyDiv').toggleClass('end');
   $('#scoreBox').toggleClass('end');
   //when end game is reach an explosion is played;
@@ -197,8 +203,9 @@ bomb.reset = function reset(){
   $('#Timer').html(bomb.timerSeconds);
   $('#Timer').css('color', '#FAFAFA');
   $('#scoreBox').html('Score: ' + bomb.score + 'pts');
-  $('body').toggleClass('end');
+  $('#keyDivContainer').toggleClass('end');
   $('#Timer').css('color','#28E558');
+  $('body').toggleClass('end');
   $('#keyDiv').toggleClass('end');
   $('#scoreBox').toggleClass('end');
 };

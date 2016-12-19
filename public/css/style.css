@@ -1,7 +1,7 @@
 h1{
   position: relative;
   z-index: 2000;
-  left: 26%;
+  left: 55%;
   top: 100px;
   font-family: 'Bentham', sans-serif;
   font-size: 37px;
@@ -11,19 +11,15 @@ h1{
   padding: 9px;
 }
 body{
-  background-size: auto;
-  min-height: 827px;
-  min-width: 60%;
-  background: url('https://goo.gl/zL6y99') no-repeat 0 0;
+  max-width: 950px;
+  max-height: 750px;
   background-color: #FAFAFA;
-  margin: 0 auto;
 }
 
 body.end{
-  background-color: black;
   background: url("https://media.giphy.com/media/jkcNl5LoETuXS/giphy.gif");
-  background-size: cover;
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
 ul {
@@ -62,14 +58,18 @@ li p{
 
 #keyDiv {
   height: 300px;
-  width: 350px;
+  width: 370px;
   position: relative;
   background-size: cover;
   background-color: #207D46;
   background-image: url('https://goo.gl/ChMFxe');
-  left: 23%;
-  top: 100px;
+  left: 32%;
+  top: 200px;
   border-radius: 5%;
+box-shadow: inset 0px 0px 21px 0px #332727;
+-webkit-box-shadow: inset 0px 0px 21px 0px #332727;
+-moz-box-shadow: inset 0px 0px 21px 0px #332727;
+-o-box-shadow: inset 0px 0px 21px 0px #332727;
 }
 
 #keyDiv.end{
@@ -77,8 +77,27 @@ li p{
   background-size: cover;
   background-repeat: no-repeat;
   background-color: #207D46;
-  top: 170px;
-  left: 40%;
+  left: 32%;
+  top: 300px;
+  box-shadow: inset 0px 0px 21px 0px #332727;
+  -webkit-box-shadow: inset 0px 0px 21px 0px #332727;
+  -moz-box-shadow: inset 0px 0px 21px 0px #332727;
+  -o-box-shadow: inset 0px 0px 21px 0px #332727;
+}
+
+#keyDivContainer{
+  background-size: auto;
+  min-height: 750px;
+  min-width: 1050px;
+  background: url('https://goo.gl/zL6y99') no-repeat 0 0;
+  margin: 0 auto;
+  position: relative;
+  bottom: 100px;
+  left: 15%;
+}
+
+#keyDivContainer.end{
+  background: none;
 }
 
 #startButton {
