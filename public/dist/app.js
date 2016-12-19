@@ -19,6 +19,7 @@ bomb.timeIncrements = 10;
 bomb.keyDownInputs = [];
 bomb.start = function start() {
   bomb.makeKeyPad();
+  bomb.audio();
 };
 
 // Have the computer make game screen
@@ -31,6 +32,9 @@ bomb.makeKeyPad = function makeKeyPad() {
   var startButton = '<div id="startButton">"Defuse"</div>';
 
   var keyWidth = bomb.width / bomb.base;
+  var audioPlayButton = '<audio id ="bgMusic" src="media/audio/bgmusic.mp3"></audio> <div class="audioButtons" id="audioPlayButton"></div>';
+  var audioPauseButton = '<div class="audioButtons" id="audioPauseButton"></div>';
+  var audioMuteButton = '<div class="audioButtons" id="audioMuteButton"></div>';
   body.append(keyDivContainer);
   $('#keyDivContainer').append(keyDiv);
   $('#keyDiv').append(keyGrid);
@@ -42,6 +46,9 @@ bomb.makeKeyPad = function makeKeyPad() {
     $('ul').append(newKey);
     $('#key' + i).html('<p>' + bomb.symbols[i] + '</p>');
   }
+  $('#keyDivContainer').append(audioPlayButton);
+  $('#keyDivContainer').append(audioPauseButton);
+  $('#keyDivContainer').append(audioMuteButton);
   $('li').css('width', keyWidth);
   $('li').css('height', keyWidth);
   $('#startButton').on('click', bomb.game);
@@ -112,15 +119,12 @@ bomb.inputSequence = function inputSequence() {
     $('#key' + [i]).on('click', function () {
       bomb.playerSequence.push($('li')[i]);
       bomb.playerSequenceId.push(i);
+      // When player clicks a button a sound will play.
+      $('#beep' + i).trigger('play');
       if (bomb.playerSequence.length === bomb.computerSequence.length) {
         bomb.sequenceComparison();
       }
-      // When player clicks a button a sound will play.
-      $('#beep' + i).trigger('play');
     });
-    // if(bomb.playerSequence.length === bomb.computerSequence.length){
-    //   bomb.sequenceComparison();
-    // }
   };
 
   for (var i = 0; i < bomb.base * bomb.base; i++) {
@@ -169,7 +173,9 @@ bomb.gameOver = function gameOver() {
   $('#keyDivContainer').toggleClass('end');
   $('#keyDiv').toggleClass('end');
   $('#scoreBox').toggleClass('end');
+  $('.audioButtons').hide();
   //when end game is reach an explosion is played;
+  bomb.stopAudio();
   $('#boom').trigger('play');
   $('#keyDiv').append('<div id = "resetButton">Retry</div>');
   $('#resetButton').on('click', bomb.reset);
@@ -204,11 +210,47 @@ bomb.reset = function reset() {
   $('body').toggleClass('end');
   $('#keyDiv').toggleClass('end');
   $('#scoreBox').toggleClass('end');
+  $('.audioButtons').show();
 };
 
 bomb.clear = function clear() {
   bomb.playerSequenceId = [];
   bomb.playerSequence = [];
+};
+
+//sets up the background music audio
+
+bomb.audio = function audio() {
+  bomb.play();
+  bomb.pause();
+  bomb.mute();
+};
+
+//plays background music
+bomb.play = function play() {
+  $('#audioPlayButton').on('click', function () {
+    $('#bgMusic').trigger('play');
+  });
+};
+
+//pauses background music
+bomb.pause = function pause() {
+  $('#audioPauseButton').on('click', function () {
+    $('#bgMusic').trigger('pause');
+  });
+};
+
+//mutes the audio for all sfx and music
+bomb.mute = function mute() {
+  $('#audioMuteButton').on('click', function () {
+    $('audio').prop('muted', !$('audio').prop('muted'));
+    $('#audioMuteButton').toggleClass('muted');
+  });
+};
+
+bomb.stopAudio = function stopAudio() {
+  $('#bgMusic').trigger('pause');
+  $('#bgMusic').prop('currentTime', 0);
 };
 
 document.addEventListener('DOMContentLoaded', bomb.start);
