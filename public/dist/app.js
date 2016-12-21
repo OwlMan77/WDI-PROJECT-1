@@ -32,7 +32,7 @@ bomb.makeKeyPad = function makeKeyPad() {
   var startButton = '<div id="startButton">"Defuse"</div>';
 
   var keyWidth = bomb.width / bomb.base;
-  var audioPlayButton = '<audio id ="bgMusic" src="media/audio/bgmusic.mp3"></audio> <div class="audioButtons" id="audioPlayButton"></div>';
+  var audioPlayButton = '<audio id ="bgMusic" src="public/media/audio/bgmusic.mp3"></audio> <div class="audioButtons" id="audioPlayButton"></div>';
   var audioPauseButton = '<div class="audioButtons" id="audioPauseButton"></div>';
   var audioMuteButton = '<div class="audioButtons" id="audioMuteButton"></div>';
   body.append(keyDivContainer);
