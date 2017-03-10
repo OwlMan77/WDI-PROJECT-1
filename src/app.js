@@ -15,6 +15,7 @@ bomb.scoreIncrements    = 10;
 bomb.timerSeconds       = 60;
 bomb.timeIncrements     = 10;
 bomb.keyDownInputs      = [];
+
 bomb.start = function start(){
   bomb.makeKeyPad();
   bomb.audio();
