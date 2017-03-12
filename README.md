@@ -66,13 +66,15 @@ During this project:
 
 ##Things I would of done differently 
 ###Styling
-Personally not a huge fan of what the styling ended up being. 
+Personally, looking back I would of taken the styling a different direction.
 
 Orignally I set out to make a simple briefcase that would have an old CRT looking Keypad with a digital clock looking timer. While I was able to create a CRT-like keypad, I was not happy with the overall look. 
 
 What I would of done differetly would of made a simpler aesthetic have the buttons look more like the original simon but with a more sinister look to it. 
 
-Similar to this picture ![](https://www.doyouremember.co.uk/uploads/raw-1336594143.jpg) 
+Similar to this picture
+
+ ![](https://www.doyouremember.co.uk/uploads/raw-1336594143.jpg) 
 
 ##Thing to add in future 
   * Help button with instructions
